@@ -1,0 +1,47 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: "Linux"
+            os: ubuntu-latest
+          - name: "macOS"
+            os: macos-latest
+          - name: "Windows"
+            os: windows-latest
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+            arch: win64_mingw73
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install CMake
+        uses: symbitic/install-cmake@master
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+
+      - name: Configure build environment on Windows
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          call "${{ matrix.config.environment_script }}"
+        shell: cmd
+
+      - name: Configure
+        run: cmake --config Debug -S . -B build -G Ninja
+
+      - name: Build
+        run: cmake --build build --config Debug -j 4
+
+      - name: Test
+        run: cmake --build build --config Debug --target test

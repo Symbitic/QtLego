@@ -1,0 +1,40 @@
+#.rst:
+# QtLego
+# ------
+#
+# CMake package for using QtLego.
+#
+# IMPORTED Targets
+# ^^^^^^^^^^^^^^^^
+#
+# This module defines the :prop_tgt:`IMPORTED` target ``Qt5::Lego``. Add
+# this to your target using :command:`target_link_libraries` to automatically
+# add the required include directories, link libraries, and compiler flags
+# required to use QtLego.
+
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
+
+@PACKAGE_INIT@
+
+# Compute paths
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/CMakeCache.txt")
+    # In build tree
+    set(TARGET_FILE "${CMAKE_CURRENT_LIST_DIR}/QtLegoDepends.cmake")
+else()
+    # Install dir
+    set(TARGET_FILE "${CMAKE_CURRENT_LIST_DIR}/QtLegoTargets.cmake")
+else()
+
+include(${TARGET_FILE} OPTIONAL RESULT_VARIABLE ret)
+if(NOT ret)
+    set(${CMAKE_FIND_PACKAGE_NAME}_FOUND FALSE)
+    set(${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE "${TARGET_FILE} not found.")
+    return()
+elseif(NOT TARGET Qt5::Lego)
+    set(${CMAKE_FIND_PACKAGE_NAME}_FOUND FALSE)
+    set(${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE "Qt5::Lego target not found.")
+    return()
+endif()
+
+# Mark the CMake package as FOUND.
+set(${CMAKE_FIND_PACKAGE_NAME}_FOUND TRUE)
