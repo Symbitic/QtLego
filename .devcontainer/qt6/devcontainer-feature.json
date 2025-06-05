@@ -1,0 +1,57 @@
+{
+    "id": "qt6",
+    "version": "0.1.0",
+    "name": "Qt6",
+    "documentationURL": "https://github.com/devcontainers/features/tree/main/src/qt6",
+    "description": "Installs Qt6 and related dependencies.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "6.9.0",
+                "6.8.0",
+                "6.7.0",
+                "6.6.0"
+            ],
+            "default": "6.8.0",
+            "description": "Select or enter a Qt release version."
+        },
+        "installDir": {
+            "type": "string",
+            "default": "/opt",
+            "description": "Directory to install Qt."
+        },
+        "modules": {
+            "type": "string",
+            "default": "",
+            "description": "Optional comma-separated list of extra Qt modules to install."
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "TheQtCompany.qt",
+                "xaver.clang-format"
+            ],
+            "settings": {
+                "files.watcherExclude": {
+                    "**/target/**": true
+                },
+                "cmake.useCMakePresets": "always",
+                "qt-core.doNotAskForDefaultQtInstallationRoot": true,
+                "qt-core.qtInstallationRoot": "/opt/Qt"
+            }
+        }
+    },
+    "capAdd": [
+        "SYS_PTRACE"
+    ],
+    "securityOpt": [
+        "seccomp=unconfined"
+    ],
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils",
+        "ghcr.io/devcontainers/features/python"
+    ]
+}

@@ -1,0 +1,62 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+include($QT_INSTALL_DOCS/config/exampleurl-qtlego.qdocconf)
+
+project                 = QtLego
+description             = Qt LEGO Reference Documentation
+version                 = $QT_VERSION
+
+qhp.projects            = QtLego
+
+qhp.QtLego.file                = qtlego.qhp
+qhp.QtLego.namespace           = org.qt-project.qtlego.$QT_VERSION_TAG
+qhp.QtLego.virtualFolder       = qtsensors
+qhp.QtLego.indexTitle          = Qt LEGO
+qhp.QtLego.indexRoot           =
+
+qhp.QtLego.subprojects = manual examples classes qmltypes
+
+qhp.QtLego.subprojects.classes.title = C++ Classes
+qhp.QtLego.subprojects.classes.indexTitle = Qt LEGO C++ Classes
+qhp.QtLego.subprojects.classes.selectors = class headerfile
+qhp.QtLego.subprojects.classes.sortPages = true
+
+qhp.QtLego.subprojects.qmltypes.title = QML Types
+qhp.QtLego.subprojects.qmltypes.indexTitle = Qt LEGO QML Types
+qhp.QtLego.subprojects.qmltypes.selectors = qmltype
+qhp.QtLego.subprojects.qmltypes.sortPages = true
+
+qhp.QtLego.subprojects.examples.title = Examples
+qhp.QtLego.subprojects.examples.indexTitle = Qt LEGO Examples
+qhp.QtLego.subprojects.examples.selectors = example
+
+qhp.QtLego.subprojects.manual.title = Qt LEGO
+qhp.QtLego.subprojects.manual.indexTitle = Qt LEGO module topics
+qhp.QtLego.subprojects.manual.type = manual
+
+tagfile                 = ../../../doc/qtlego/qtlego.tags
+
+{headerdirs,sourcedirs} += .. \
+                ../../legoquick
+
+exampledirs += ../../../examples/lego \
+               snippets/
+
+# Specify the install path under QT_INSTALL_EXAMPLES
+examplesinstallpath = lego
+
+# Path to the root of qtlego (for automatic linking to source code)
+url.sources.rootdir     = ../../..
+
+imagedirs   += images
+
+depends += qtcore qtdoc qtgui qtquick qtsensors qtbluetooth qtcmake
+
+# Highlighted examples
+manifestmeta.highlighted.names = "QtLego/LEGO Showcase"
+
+navigation.landingpage = "Qt LEGO"
+navigation.cppclassespage = "Qt LEGO C++ Classes"
+navigation.qmltypespage = "Qt LEGO QML Types"
+# Auto-generate navigation linking based on "Qt LEGO module topics":
+navigation.toctitles = "Qt LEGO module topics"
+navigation.toctitles.inclusive = false

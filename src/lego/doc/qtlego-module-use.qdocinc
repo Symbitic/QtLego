@@ -1,0 +1,15 @@
+// Copyright (C) 2025 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+//! [cmakebuild]
+    \code
+    find_package(Qt6 REQUIRED COMPONENTS Lego)
+    target_link_libraries(mytarget PRIVATE Qt6::Lego)
+    \endcode
+//! [cmakebuild]
+
+//! [qmakebuild]
+    \code
+    QT += lego
+    \endcode
+//! [qmakebuild]

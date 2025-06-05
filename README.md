@@ -29,9 +29,3 @@ QObject::connect(scanner, &QLegoDeviceScanner::deviceFound, [=](QLegoDevice *dev
 ```
 
 See [examples/helloworld.cpp](./examples/helloworld.cpp) for a more complete example.
-
-## License
-
-Copyright © Alex Shaw 2021
-
-Source code is licensed under the [MIT](LICENSE.md) license.
