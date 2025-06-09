@@ -2,9 +2,7 @@
     "name": "qtlego",
     "image": "mcr.microsoft.com/vscode/devcontainers/base:debian-12",
     "features": {
-        "./qt6": {
-            "modules": "qtconnectivity,qtsensors"
-        }
+        "./qt6": {}
     },
     "customizations": {
         "vscode": {
