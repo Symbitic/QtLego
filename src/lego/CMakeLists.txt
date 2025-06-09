@@ -8,7 +8,7 @@
 qt_internal_add_module(Lego
     SOURCES
         qlegoglobal.h
-        qlegohub.cpp qlegohub.h
+        qlegohub.cpp qlegohub_p.h qlegohub.h
     LIBRARIES
         Qt::CorePrivate
     PUBLIC_LIBRARIES
